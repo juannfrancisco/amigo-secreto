@@ -1,24 +1,37 @@
 package cl.magno.labs.games.secretfriend.core.model;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
-public class Raffle {
 
-    private String id;
+@Entity
+@Table(name = "raffle")
+public class Raffle implements Serializable {
+
+    private static final long serialVersionUID = -3009157732242241606L;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
     private String description;
+
+    @Transient
     private List<String> rules;
+
+    @Transient
     private List<Person> members;
 
 
     public Raffle() {
     }
 
-    public Raffle(String id) {
+    public Raffle(int id) {
         this.id = id;
     }
 
-    public Raffle(String id, String name, String description, List<String> rules, List<Person> members) {
+    public Raffle(int id, String name, String description, List<String> rules, List<Person> members) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -26,11 +39,11 @@ public class Raffle {
         this.members = members;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

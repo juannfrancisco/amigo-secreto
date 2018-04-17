@@ -1,0 +1,24 @@
+version: "3"
+
+services:
+  secret-friend-services:
+    image: magno-labs/secret-friend:latest
+    environment:
+      - POSTGRES_DB_URL=jdbc:postgresql://database:5432/postgres
+      - POSTGRES_DB_PORT=5432
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "8080:8080"
+    links:
+      - database:database
+
+  database:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=mysecretpassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"

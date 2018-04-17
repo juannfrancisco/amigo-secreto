@@ -1,13 +1,18 @@
 package cl.magno.labs.games.secretfriend.core.model;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * @author JUAN MALDONADO LEON - MLABS
  * 2011
  */
+@Entity
+@Table( name = "person" )
 public class Person {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String name;
@@ -18,8 +23,10 @@ public class Person {
 
     private String dislikes;
 
+    @Transient
     private List<String> clues;
 
+    @Transient
     private Person secretFriend;
 
 
